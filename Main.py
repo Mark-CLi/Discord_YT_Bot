@@ -83,4 +83,4 @@ async def stop(ctx):
 
 # Replace 'YOUR_BOT_TOKEN' with your actual bot token
 
-bot.run('MTE4ODM3NDE2ODExMTE2MTM4NQ.GOHEdc.yXRIerHRLYEz18_3xf3z9kdAor8WWcxOBqIotQ')
+bot.run('Token')
