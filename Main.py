@@ -74,8 +74,9 @@ async def play(ctx, source):
             player = await YTDLSource.from_file(source)
         ctx.voice_client.play(player, after=lambda e: print(f'Player error: {e}') if e else None)
 
-    await ctx.send(f'Now playing: {player.title}')
-
+        # Create an embed object for the Now Playing message
+        embed = discord.Embed(title="Now Playing", description=player.title, color=discord.Color.blue())
+        await ctx.send(embed=embed)  # Send the embed instead of a normal message
 
 @bot.command(name='stop', help='Stops and disconnects the bot from voice')
 async def stop(ctx):
@@ -83,4 +84,4 @@ async def stop(ctx):
 
 # Replace 'YOUR_BOT_TOKEN' with your actual bot token
 
-bot.run('Token')
+bot.run('DC Token')
