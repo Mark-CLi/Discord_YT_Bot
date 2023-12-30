@@ -1,5 +1,6 @@
 
 # YTBot 1.0 Update
+A Music Bot By Mark
 
 ## New Features
 
