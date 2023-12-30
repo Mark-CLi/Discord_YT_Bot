@@ -29,13 +29,13 @@ ytdl_format_options = {
 }
 
 ffmpeg_options = {
-    'options': '-vn'
+    'options': '-vn' # Disable video
 }
 
 ytdl = yt_dlp.YoutubeDL(ytdl_format_options)
 
 # Queue for songs
-song_queue = deque()
+song_queue = deque() # Use collections.deque() for thread-safe operations
 
 class YTDLSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=0.5):
@@ -45,18 +45,32 @@ class YTDLSource(discord.PCMVolumeTransformer):
         self.url = ""
 
     @classmethod
-    async def from_url(cls, url, *, loop=None, stream=False):
-        loop = loop or asyncio.get_event_loop()
+async def from_url(cls, url, *, loop=None, stream=False):
+    loop = loop or asyncio.get_event_loop()
+    data = None
+    try:
         data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=not stream))
+    except Exception as e:
+        print(f"Error occurred while extracting info from url: {e}")
+        return None
 
-        if 'entries' in data:
-            data = data['entries'][0]
+    if 'entries' in data:
+        data = data['entries'][0]
 
+    filename = None
+    try:
         filename = data['url'] if stream else ytdl.prepare_filename(data)
         if not filename.endswith('.mp3'):
             filename = f"{filename.rsplit('.', 1)[0]}.mp3"
+    except Exception as e:
+        print(f"Error occurred while preparing filename: {e}")
+        return None
 
+    try:
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
+    except Exception as e:
+        print(f"Error occurred while creating FFmpegPCMAudio: {e}")
+        return None
 
     @classmethod
     async def from_file(cls, file_path):
