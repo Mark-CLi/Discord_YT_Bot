@@ -93,8 +93,16 @@ A Music Bot By Mark
      screen -r
      ```
 
-9. **Setup Cronjob for Scheduled Deletion**
+9. **Setup Cronjob for Scheduled Deletion** 
    - Change the directory to where your shell script is located.
+     ```
+     cd directory/of/your/sh/file
+     ```
+   - Make Executable
+   - Note: Sudo needed if this file is located from /root
+     ```
+     chmod +x delete_mp3.sh
+     ```
    - Edit crontab:
      ```
      crontab -e
