@@ -74,7 +74,7 @@ async def play_next_song(ctx):
     else:
         try:
             # Send an embed message indicating the queue is empty and the bot will disconnect in 15 minutes
-            embed = discord.Embed(title="Queue Empty", description="The queue is currently empty. Disconnecting in 15 minutes.", color=discord.Color.blue())
+            embed = discord.Embed(title="Queue Empty", description="The queue is empty. Disconnecting in 15 minutes.", color=discord.Color.blue())
             await ctx.send(embed=embed)
 
             # Wait for 15 minutes
