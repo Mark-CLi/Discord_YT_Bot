@@ -35,8 +35,37 @@ A Music Bot By Mark
      mkdir project/production/YTBot
      ```
    - Move your files to the YTBot directory.
+  
+5. **Make your bot token File**
+   - For Linux
+   ```
+   cd path/to/your/BOT/Folder
+   ```
+   - Create the file
+   ```
+   touch Discord_Token.txt
+   ```
+   - Edit the file
+   ```
+   nano Discord_Token.txt
+   ```
+   - Paste your discord token into the file
+   - Save and exit (Ctrl+O, Enter, Ctrl+X).
 
-5. **Install and Use Screen for Background Running**
+  6. **Edit the Python file to direct the bot to the right Path**
+      - Assume you are already cd in the correct path
+     ```
+      nano Bot.py
+      ```
+      - edit
+      ```
+      with open('path/to/your/BOT/Folder/Discord_Token.txt','r') as file:
+       TOKEN = file.read().strip()
+      ```
+      - Save and exit (Ctrl+O, Enter, Ctrl+X).
+   
+
+8. **Install and Use Screen for Background Running**
    - Install Screen:
      ```
      sudo apt-get install screen
@@ -47,7 +76,7 @@ A Music Bot By Mark
      ```
    - Run your Python script:
      ```
-     python3 [path to your python script]
+     python3 [path to your Python script]
      ```
    - Detach from Screen session:
      ```
@@ -58,8 +87,8 @@ A Music Bot By Mark
      screen -r
      ```
 
-6. **Setup Cronjob for Scheduled Deletion**
-   - Change directory to where your shell script is located.
+9. **Setup Cronjob for Scheduled Deletion**
+   - Change the directory to where your shell script is located.
    - Edit crontab:
      ```
      crontab -e
