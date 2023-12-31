@@ -1,3 +1,4 @@
+import os
 import discord
 from discord.ext import commands
 import yt_dlp
@@ -7,6 +8,9 @@ from collections import deque
 # Declare Intents
 intents = discord.Intents.default()
 intents.message_content = True  # Enable the message content intent
+
+with open('/root/project/production/YTBOT/Discord_Token.txt','r') as file:
+    TOKEN = file.read().strip()
 
 # Bot command prefix
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -159,5 +163,17 @@ async def stop(ctx):
     embed = discord.Embed(title="Disconnected", description="The bot has disconnected from the voice channel.", color=discord.Color.dark_red())
     await ctx.send(embed=embed)
 
+@bot.command(name='ythelp', help='Displays the bot commands')
+async def help(ctx):
+    embed = discord.Embed(title="Command Info", description="List of Available Command.", color=discord.Color.dark_red())
+
+    embed.add_field(name="!play", value="Play a song from provided Youtube URL or Search a video by name", inline=False)
+    embed.add_field(name="!skip", value="Skip current video/song", inline=False)
+    embed.add_field(name="!queue", value="Check current queue", inline=False)
+    embed.add_field(name="!nuke", value="Delete current queue, aks nuke it all", inline=False)
+    embed.add_field(name="!stop", value="Stop the music, and disconnect the bot from current voice channel", inline=False)
+
+    await ctx.send(embed=embed)
+
 # Replace 'YOUR_BOT_TOKEN' with your actual bot token
-bot.run('DC BOT TOKEN')
+bot.run(TOKEN)
