@@ -1,6 +1,12 @@
+# YTBot 1.1 Update
+A Music Bot By Mark
+
+## New Features
+ 
+- **Added Command** `!ythelp` command, this will show as an embed message of all available command
+- **Discord Token** Discord token get read from `Discord_Token.txt` instead of showing in the .py file itself for security
 
 # YTBot 1.0 Update
-A Music Bot By Mark
 
 ## New Features
 
