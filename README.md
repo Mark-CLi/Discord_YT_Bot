@@ -1,3 +1,7 @@
+# Coming Soon
+
+ - Ability to process song while the song is still in queue, this will speed up the music transition
+
 # YTBot 1.1 Update
 A Music Bot By Mark
 
