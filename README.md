@@ -9,6 +9,7 @@ A Music Bot By Mark
 - **Enhanced Play Command**: The `!play` command now searches for files if a non-valid URL is detected.
 - **Skip Feature**: Added the `!skip` command to skip currently playing files.
 - **Nuke Queue Feature**: Added `!nuke` to clear the entire queue.
+- **Stop Queue(Bot Disconnect)** : The `!stop` command will disconnect the bot from current voice channel
 
 ## Installation Instructions
 
