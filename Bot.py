@@ -125,7 +125,7 @@ async def play_song(ctx, song):
         await ctx.send(embed=embed)
 
 # Make sure the @bot command is aligned with the rest of the commands, not inside any other function
-@bot.command(name='play', help='Plays a song from a file or YouTube')
+@bot.command(name='play',aliases=['p'], help='Plays a song from a file or YouTube')
 async def play(ctx, *, source):
     song_queue.append(source)
     if not ctx.voice_client or not ctx.voice_client.is_playing():
@@ -156,22 +156,44 @@ async def queue(ctx):
         embed = discord.Embed(title="Queue", description="The queue is currently empty.", color=discord.Color.grey())
         await ctx.send(embed=embed)
 
-@bot.command(name='stop', help='Stops and disconnects the bot from voice')
+@bot.command(name='stop',aliases=['s'], help='Stops and disconnects the bot from voice')
 async def stop(ctx):
     if ctx.voice_client:
         await ctx.voice_client.disconnect()
     embed = discord.Embed(title="Disconnected", description="The bot has disconnected from the voice channel.", color=discord.Color.dark_red())
     await ctx.send(embed=embed)
 
+@bot.command(name='pause', help='Pause the music')
+async def pause(ctx):
+    if ctx.voice_client and ctx.voice_client.is_playing():
+        ctx.voice_client.pause()
+        embed = discord.Embed(title="Paused", description="Song paused", color=discord.Color.orange())
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(title="Pause Error", description="No song is playing or bot not connected to VC", color=discord.Color.orange())
+        await ctx.send(embed=embed)
+
+@bot.command(name='resume', help='Resume the music')
+async def resume(ctx):
+    if ctx.voice_client and ctx.voice_client.is_paused():
+        ctx.voice_client.resume()
+        embed = discord.Embed(title="Resumed", description="Song Resumed", color=discord.Color.orange())
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(title="Resume Error", description="No song is playing or bot is not connected to VC", color=discord.Color.orange())
+        await ctx.send(embed=embed)
+
 @bot.command(name='ythelp', help='Displays the bot commands')
 async def help(ctx):
     embed = discord.Embed(title="Command Info", description="List of Available Command.", color=discord.Color.dark_red())
 
-    embed.add_field(name="!play", value="Play a song from provided Youtube URL or Search a video by name", inline=False)
+    embed.add_field(name="!play or !p", value="Play a song from provided Youtube URL or Search a video by name", inline=False)
     embed.add_field(name="!skip", value="Skip current video/song", inline=False)
     embed.add_field(name="!queue", value="Check current queue", inline=False)
     embed.add_field(name="!nuke", value="Delete current queue, aks nuke it all", inline=False)
-    embed.add_field(name="!stop", value="Stop the music, and disconnect the bot from current voice channel", inline=False)
+    embed.add_field(name="!stop or !s", value="Stop the music, and disconnect the bot from current voice channel", inline=False)
+    embed.add_field(name="!resume", value="Resume the music", inline=False)
+    embed.add_field(name="!pause", value="Pause the music", inline=False)
 
     await ctx.send(embed=embed)
 
