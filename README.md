@@ -2,6 +2,15 @@
 
  - Ability to process song while the song is still in queue, this will speed up the music transition
 
+# YTBot 1.2 Update
+
+## New Features
+
+- **Added Command** `!resume` command, this will resume the music
+- **Added Command** `!pause` command, this will pause the msuic
+- **Added Shortcut** `!p` = `!play`
+- **Added Shortcut** `!s` = `!stop`
+
 # YTBot 1.1 Update
 A Music Bot By Mark
 
