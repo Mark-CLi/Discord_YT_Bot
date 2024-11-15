@@ -2,6 +2,10 @@
 
  - Ability to process song while the song is still in queue, this will speed up the music transition
 
+# YTBot 1.3 Update
+
+- **Added Support** for Discord build-in command feature 
+
 # YTBot 1.2 Update
 
 ## New Features
