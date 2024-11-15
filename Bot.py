@@ -9,7 +9,7 @@ from collections import deque
 intents = discord.Intents.default()
 intents.message_content = True  # Enable the message content intent
 
-with open('/root/project/production/YTBOT/Discord_Token.txt','r') as file:
+with open('/root/production/YTBOT/Discord_Token.txt','r') as file:
     TOKEN = file.read().strip()
 
 # Initialize the bot with application commands
